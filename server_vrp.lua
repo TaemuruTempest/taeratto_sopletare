@@ -11,7 +11,7 @@ function TrtSopletare.tunnel:GetItem(item)
     
     user:tryGiveItem(item, 1, false, false)
     -- vRP.EXT.Base.remote._notify(user.source, "You get wallet ~g~$"..wallet)
-    SendAlert(user.source, 'success', "u get "..item)
+    SendAlert(user.source, 'success', "You get "..item)
     
 end
 
