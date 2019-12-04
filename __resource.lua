@@ -6,7 +6,11 @@ author 'TaerAttO'
 version '0.1.0'
 url 'https://discord.io/secretTH'
 
-dependency "vrp"
+dependencies {
+    "vrp",
+    "mythic_notify",
+    "mythic_progbar"
+}
 
 server_script {
     "@vrp/lib/utils.lua",
