@@ -1,8 +1,10 @@
 resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
 
-description "TaerAttO vRP"
-
--- ui_page 'html/ui.html'
+name 'TaerAttO Sopletare'
+description "TaerAttO vRP2"
+author 'TaerAttO'
+version '0.1.0'
+url 'https://discord.io/secretTH'
 
 dependency "vrp"
 
@@ -19,7 +21,4 @@ client_scripts {
 files {
     "client_vrp.lua",
     "cfg/sopletare.lua"
-    -- 'html/ui.html',
-    -- 'html/css/main.css',
-    -- 'html/js/app.js',
 }

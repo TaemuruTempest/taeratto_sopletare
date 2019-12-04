@@ -6,24 +6,17 @@ end
 
 TrtSopletare.tunnel = {}
 
-function TrtSopletare.tunnel:GetItem(skillcheck)
+function TrtSopletare.tunnel:GetItem(item)
     local user = vRP.users_by_source[source]
-    local wallet = 0
-
-    if skillcheck then
-        wallet = 500
-    else
-        wallet = 100
-    end
-
-    user:tryPayment(wallet)
-    vRP.EXT.Base.remote._notify(user.source,"You get wallet ~g~$"..wallet)
-    -- SendAlert(user.source, 'success', "คุณได้รับ "..wallet)
+    
+    user:tryGiveItem(item, 1, false, false)
+    -- vRP.EXT.Base.remote._notify(user.source, "You get wallet ~g~$"..wallet)
+    SendAlert(user.source, 'success', "u get "..item)
     
 end
 
--- function SendAlert (source, type, text)
---     TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = type, text = text, length = 4500 })
--- end
+function SendAlert (source, type, text)
+    TriggerClientEvent('mythic_notify:client:SendAlert', source, { type = type, text = text, length = 4500 })
+end
 
 vRP:registerExtension(TrtSopletare)

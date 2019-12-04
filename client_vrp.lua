@@ -18,7 +18,7 @@ function TrtSopletare:__construct()
 
     Citizen.CreateThread(function()
         Citizen.Wait(5000)
-        while(true)do
+        while true do
             isControl = IsControlJustReleased(0, 38)
             Citizen.Wait(0)
         end
@@ -47,7 +47,6 @@ function TrtSopletare:__construct()
                     else
                         closestObj = false
                         sleep = 1000
-                        -- numberOfarrr = 0
                     end
                 end
             end
@@ -57,11 +56,10 @@ function TrtSopletare:__construct()
     end)
 
     Citizen.CreateThread(function()
-        while(true)do
+        while true do
             if isControl and not isWorking and closestObj then
                 isWorking = true
                 if not cachedBins[entity] then
-                    -- OpenBin(entity, self)
                     exports['mythic_progbar']:Progress({
                         name = "unique_action_name",
                         duration = closestBin[numberOfarrr].duration_time,
@@ -78,10 +76,9 @@ function TrtSopletare:__construct()
                             prop = closestBin[numberOfarrr].prop_progbar,
                             propTwo = closestBin[numberOfarrr].prop_two_progbar,
                     }, function(status)
-                        if not status then -- and skillCheck then
+                        if not status then
                             cachedBins[entity] = true
-                            -- TriggerServerEvent(Config.triggerEventName, skillCheck)
-                            self.remote._GetItem(true)
+                            self.remote._GetItem(closestBin[numberOfarrr].items[math.random(#closestBin[numberOfarrr].items)])
                             ClearPedTasksImmediately(PlayerPedId())
                             isWorking = false
                             skillCheck = false
@@ -103,7 +100,7 @@ function TrtSopletare:__construct()
     end)
 
     Citizen.CreateThread(function()
-        while(true)do
+        while true do
             if closestObj then
                 DrawText3D(bin.x, bin.y, bin.z + 1.0, closestBin[numberOfarrr].show_help)
             end
@@ -115,27 +112,15 @@ function TrtSopletare:__construct()
 
 end
 
--- NUI that get triggered on success
-RegisterNUICallback('WorkingSuccess', function()
-    SetNuiFocus(false, false)
-    skillCheck = true
-end)
-
--- NUI that get triggered on fail
-RegisterNUICallback('WorkingFailed', function()
-    SetNuiFocus(false, false)
-    skillCheck = false
-end)
-
 local fontID = nil
 Citizen.CreateThread(function()
 	while fontID == nil do
 		Citizen.Wait(5000)
-    	fontID = exports['taeratto_base']:getFontID()
+    	fontID = 1 -- exports['taeratto_base']:getFontID() -- if u need to streaming custom font
   	end
 end)
 
-DrawText3D = function(x, y, z, text)
+local DrawText3D = function(x, y, z, text)
     SetTextScale(0.55, 0.55)
     SetTextFont(fontID)
     SetTextProportional(1)
@@ -149,15 +134,6 @@ DrawText3D = function(x, y, z, text)
     DrawRect(0.0, 0.0+0.0225, 0.007+ factor, 0.04, 0, 0, 0, 68)
     ClearDrawOrigin()
 end
-
--- OpenBin = function(entity, self)
---     --[[ SetNuiFocus(true,true)
---                 SendNUIMessage({
---                     action = "opengame",
---                 }) ]]
-
-    
--- end
 
 TrtSopletare.tunnel = {}
 
